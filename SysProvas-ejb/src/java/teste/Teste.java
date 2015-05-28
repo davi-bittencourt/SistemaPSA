@@ -5,6 +5,8 @@
  */
 package teste;
 
+import java.util.List;
+import javax.ejb.EJB;
 import negocio.*;
 
 /**
@@ -12,10 +14,16 @@ import negocio.*;
  * @author davi.bittencourt
  */
 public class Teste {
-    public static void main(String[] args) {
+    public void executar() {      
         Fachada f = new Fachada();
-        for(QuestaoDTO q : f.getQuestoes()){
-        System.out.println(q.getEnunciado());
+        List<QuestaoDTO> questoes = f.getQuestoes();
+        for (QuestaoDTO q : questoes) {
+            System.out.println(q.getEnunciado());
+        }
     }
+
+    public static void main(String[] args) {
+        Teste t = new Teste();
+        t.executar();
     }
 }
