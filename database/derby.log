@@ -1,0 +1,44 @@
+Thu May 28 11:06:28 BRT 2015 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+----------------------------------------------------------------
+Thu May 28 11:07:16 BRT 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-014d-9ad8-79ef-000037f95681
+no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\dbprovas 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b15
+user.dir=C:\Program Files\glassfish-4.1\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Thu May 28 11:07:25 BRT 2015:
+Encerrando a instância a816c00e-014d-9ad8-79ef-000037f95681
+Thu May 28 11:07:25 BRT 2015 Thread[DRDAConnThread_2,5,main] (DATABASE = dbprovas), (DRDAID = {2}), Banco de dados 'dbprovas' fechado.
+----------------------------------------------------------------
+Thu May 28 11:07:35 BRT 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 560740aa-014d-9ad8-79ef-000037f95681
+no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\dbprovas 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b15
+user.dir=C:\Program Files\glassfish-4.1\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Thu May 28 16:09:25 BRT 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 2a30c383-014d-9ad8-79ef-000037f95681
+no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\sun-appserv-samples 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b15
+user.dir=C:\Program Files\glassfish-4.1\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
