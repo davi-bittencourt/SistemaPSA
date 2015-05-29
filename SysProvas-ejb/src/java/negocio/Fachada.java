@@ -38,7 +38,7 @@ public class Fachada implements FachadaLocal {
             String enunciado = q.getEnunciado();
             String categoria = "";
             for (Categoria c : q.getCategoriaCollection()) {
-                categoria += c.getNome() + "; ";
+               categoria += c.getNome() + "; ";
             }
             String comentario = q.getComentario();
             String alternativa_correta = q.getAlternativaCorreta();
@@ -54,6 +54,7 @@ public class Fachada implements FachadaLocal {
         return dtoQuestao;
     }
 
+    @Override
     public List<CategoriaDTO> getCategorias() throws FachadaException {
         try {
             List<Categoria> categorias = categoriaEjb.findAll();
