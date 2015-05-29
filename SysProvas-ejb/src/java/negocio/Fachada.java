@@ -16,12 +16,10 @@ import javax.ejb.EJB;
  */
 @Stateless
 public class Fachada implements FachadaLocal {
-    
     @EJB
     private CategoriaFacadeLocal categoriaEjb;
     @EJB
-    private QuestaoFacadeLocal questaoEjb;
-    
+    private QuestaoFacadeLocal questaoEjb; 
     @Override
     public List<QuestaoDTO> getQuestoes() throws FachadaException{
         try {

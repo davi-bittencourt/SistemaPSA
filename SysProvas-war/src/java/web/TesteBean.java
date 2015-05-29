@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package web;
 
 import java.util.List;
@@ -14,11 +9,10 @@ import negocio.QuestaoDTO;
 
 @Named
 @RequestScoped
-public class TesteBean {
-    
+public class TesteBean {  
     @EJB
     private FachadaLocal fachadaEjb;
-
+    
     public List<QuestaoDTO> getQuestoes() {
         return fachadaEjb.getQuestoes();
     }
