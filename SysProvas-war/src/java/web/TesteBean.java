@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import negocio.CategoriaDTO;
 import negocio.FachadaLocal;
 import negocio.QuestaoDTO;
 
@@ -17,4 +18,7 @@ public class TesteBean {
         return fachadaEjb.getQuestoes();
     }
     
+    public List<CategoriaDTO> getCategorias() {
+        return fachadaEjb.getCategorias();
+    }
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.EJB;
+
 /**
  *
  * @author davi.bittencourt
@@ -19,14 +20,14 @@ public class Fachada implements FachadaLocal {
     @EJB
     private CategoriaFacadeLocal categoriaEjb;
     @EJB
-    private QuestaoFacadeLocal questaoEjb; 
+    private QuestaoFacadeLocal questaoEjb;
     @Override
-    public List<QuestaoDTO> getQuestoes() throws FachadaException{
+    public List<QuestaoDTO> getQuestoes() throws FachadaException {
         try {
             List<Questao> questoes = questaoEjb.findAll();
             return copiarParaQuestoesDTO(questoes);
         } catch (Exception e) {
-            throw new FachadaException("Erro ao buscar", e);
+            throw new FachadaException("Erro ao buscar categorias", e);
         }
     }
 
@@ -52,5 +53,21 @@ public class Fachada implements FachadaLocal {
         }
         return dtoQuestao;
     }
-}
 
+    public List<CategoriaDTO> getCategorias() throws FachadaException {
+        try {
+            List<Categoria> categorias = categoriaEjb.findAll();
+            return copiarParaCategoriaDTO(categorias);
+        } catch (Exception e) {
+            throw new FachadaException("Erro ao buscar categorias", e);
+        }
+    }
+
+    private List<CategoriaDTO> copiarParaCategoriaDTO(List<Categoria> categorias) {
+        List<CategoriaDTO> dtoCategoria = new ArrayList<CategoriaDTO>(categorias.size());
+        for (Categoria c : categorias) {
+            dtoCategoria.add(new CategoriaDTO(c.getIdCateg(), c.getNome()));
+        }
+        return dtoCategoria;
+    }
+}

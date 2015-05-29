@@ -5,6 +5,7 @@
  */
 package teste;
 
+import entidades.Questao;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,14 +16,18 @@ import negocio.*;
  * @author davi.bittencourt
  */
 public class Teste {
-    @EJB
-    private FachadaLocal f;
-    @PostConstruct
+    
     public void executar() {        
-        List<QuestaoDTO> questoes = f.getQuestoes();
-        for (QuestaoDTO q : questoes) {
+        QuestaoFacade q1 = new QuestaoFacade();
+        
+        for (Questao q : q1.findAll()) {
             System.out.println(q.getEnunciado());
             System.out.println("88888888888888888888888888888888888888888888888888888888888888888888");
         }
+    }
+    
+    public static void main(String args[]){
+        Teste t = new Teste();
+        t.executar();
     }
 }

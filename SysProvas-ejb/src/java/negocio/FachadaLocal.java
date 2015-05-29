@@ -15,4 +15,5 @@ import javax.ejb.Local;
 @Local
 public interface FachadaLocal {
     List<QuestaoDTO> getQuestoes();
+    List<CategoriaDTO> getCategorias();   
 }

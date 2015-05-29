@@ -25,3 +25,16 @@ os.arch=amd64
 os.version=6.1
 derby.system.home=C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Fri May 29 11:24:20 BRT 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 848c0061-014d-9fbb-18cc-000037f95681
+no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\dbprovas 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b15
+user.dir=C:\Program Files\glassfish-4.1\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
