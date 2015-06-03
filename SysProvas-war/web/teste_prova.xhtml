@@ -7,20 +7,61 @@
         <title>Teste prova</title>
     </h:head>
     <h:body>
-        TESTE COM CATEGORIAS!
-        <h:dataTable id="tabCustomers" value="#{testeBean.getProva(id)}" var="c">
+        <b>Exibindo a prova 2</b><br /><br />
+        <h:outputText value="ID: #{testeBean.getProva(2).idProva} - Código: #{testeBean.getProva(2).codigo} - Professor: #{testeBean.getProva(2).idProf}"/>
+        <br />
+        <h:outputText value="#{testeBean.getProva(2).questoesSize} questões"/>
+        <br /><br />
+        <b>Resolva as questões:</b><br /><br />
+        <h:dataTable id="tabCustomers" value="#{testeBean.getProva(2).questoes}" var="q">
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="ID - "/>
+                    <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{c.idCateg}"/>
+                <h:outputText value="#{q.id_questao}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Nome - "/>
+                    <h:outputText value="Enunciado"/>
                 </f:facet>
-                <h:outputText value="#{c.nome}"/>
+                <h:outputText value="#{q.enunciado}"/>
             </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="A"/>
+                </f:facet>
+                <h:outputText value="#{q.alternativa_a}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="B"/>
+                </f:facet>
+                <h:outputText value="#{q.alternativa_b}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="C"/>
+                </f:facet>
+                <h:outputText value="#{q.alternativa_c}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="D"/>
+                </f:facet>
+                <h:outputText value="#{q.alternativa_d}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="E"/>
+                </f:facet>
+                <h:outputText value="#{q.alternativa_e}"/>
+            </h:column>
+            
         </h:dataTable>
     </h:body>
 </html>

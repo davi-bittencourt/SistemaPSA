@@ -77,14 +77,37 @@ public class Fachada implements FachadaLocal {
     }
 
     @Override
-    public ProvaDTO getProva(int id) throws FachadaException{
+    public ProvaDTO getProva(int id) throws FachadaException {
         try {
             Prova p = provaEjb.find(id);
             List<QuestaoDTO> questoes = copiarParaQuestoesDTO(new ArrayList(p.getQuestaoCollection()));
             ProvaDTO dto = new ProvaDTO(p.getIdProva(), p.getCodigo(), questoes, p.getIdProf().getNome());
             return dto;
         } catch (Exception e) {
-            throw new FachadaException("Erro ao buscar a prova de id: "+id+" - ", e);
+            throw new FachadaException("Erro ao buscar a prova de id: " + id + " - ", e);
         }
+    }
+
+    @Override
+    public List<ProvaDTO> getProvas() throws FachadaException {
+        try {
+            List<Prova> provas = provaEjb.findAll();
+            return copiarParaProvasDTO(provas);
+        } catch (Exception e) {
+            throw new FachadaException("Erro ao buscar provas cadastradas", e);
+        }
+    }
+
+    private List<ProvaDTO> copiarParaProvasDTO(List<Prova> provas) {
+        List<ProvaDTO> dtoProvas = new ArrayList<ProvaDTO>(provas.size());
+        for (Prova p : provas) {
+            Integer id = p.getIdProva();
+            String cod = p.getCodigo();
+            String profName = p.getIdProf().getNome();
+            
+            List<QuestaoDTO> questoes = copiarParaQuestoesDTO(new ArrayList(p.getQuestaoCollection()));
+            dtoProvas.add(new ProvaDTO(id, cod, questoes, profName));
+        }
+        return dtoProvas;
     }
 }

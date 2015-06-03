@@ -44,6 +44,7 @@ public class ProvaDTO {
     }
 
     public String getCodigo() {
+        if(codigo == null) return "N/D";
         return codigo;
     }
 
