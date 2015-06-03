@@ -17,10 +17,14 @@ import javax.ejb.EJB;
  */
 @Stateless
 public class Fachada implements FachadaLocal {
+
     @EJB
     private CategoriaFacadeLocal categoriaEjb;
     @EJB
     private QuestaoFacadeLocal questaoEjb;
+    @EJB
+    private ProvaFacadeLocal provaEjb;
+
     @Override
     public List<QuestaoDTO> getQuestoes() throws FachadaException {
         try {
@@ -38,7 +42,7 @@ public class Fachada implements FachadaLocal {
             String enunciado = q.getEnunciado();
             String categoria = "";
             for (Categoria c : q.getCategoriaCollection()) {
-               categoria += c.getNome() + "; ";
+                categoria += c.getNome() + "; ";
             }
             String comentario = q.getComentario();
             String alternativa_correta = q.getAlternativaCorreta();
@@ -70,5 +74,17 @@ public class Fachada implements FachadaLocal {
             dtoCategoria.add(new CategoriaDTO(c.getIdCateg(), c.getNome()));
         }
         return dtoCategoria;
+    }
+
+    @Override
+    public ProvaDTO getProva(int id) throws FachadaException{
+        try {
+            Prova p = provaEjb.find(id);
+            List<QuestaoDTO> questoes = copiarParaQuestoesDTO(new ArrayList(p.getQuestaoCollection()));
+            ProvaDTO dto = new ProvaDTO(p.getIdProva(), p.getCodigo(), questoes, p.getIdProf().getNome());
+            return dto;
+        } catch (Exception e) {
+            throw new FachadaException("Erro ao buscar a prova de id: "+id+" - ", e);
+        }
     }
 }

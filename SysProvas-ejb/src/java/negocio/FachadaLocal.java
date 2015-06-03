@@ -15,5 +15,11 @@ import javax.ejb.Local;
 @Local
 public interface FachadaLocal {
     List<QuestaoDTO> getQuestoes();
-    List<CategoriaDTO> getCategorias();   
+    List<CategoriaDTO> getCategorias();
+    /**
+     * Retorna uma prova cadastrada no banco de dados
+     * @param id da prova
+     * @return objeto ProvaDTO, que será utilizado na camada de apresentação
+     */
+    ProvaDTO getProva(int id); 
 }

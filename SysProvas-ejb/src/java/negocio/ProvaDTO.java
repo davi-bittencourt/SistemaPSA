@@ -5,7 +5,6 @@
  */
 package negocio;
 
-import entidades.Professor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class ProvaDTO {
     private List<QuestaoDTO> questoes;
     private String idProf;
     
-    public ProvaDTO(Integer idProva, String codigo, ArrayList<QuestaoDTO> questoes, String nomeP) {
+    public ProvaDTO(Integer idProva, String codigo, List<QuestaoDTO> questoes, String nomeP) {
         this.idProva = idProva;
         this.codigo = codigo;
         this.questoes = questoes;

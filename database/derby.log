@@ -1,21 +1,8 @@
-Mon Jun 01 16:41:02 BRT 2015 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Wed Jun 03 10:05:26 BRT 2015 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Mon Jun 01 16:41:05 BRT 2015:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-014d-b0a4-2432-000037f95681
-no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\sun-appserv-samples 
-
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_45-b15
-user.dir=C:\Program Files\glassfish-4.1\javadb
-os.name=Windows 7
-os.arch=amd64
-os.version=6.1
-derby.system.home=C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database
-Carregador de classe do banco de dados iniciado - derby.database.classpath=''
-----------------------------------------------------------------
-Mon Jun 01 16:49:04 BRT 2015:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 79f80040-014d-b0a4-2432-000037f95681
-no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\sample 
+Wed Jun 03 10:06:12 BRT 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-014d-b986-bf37-000037f95681
+no diretório de banco de dados C:\Users\davi.bittencourt\Documents\NetBeansProjects\SysProvas\database\dbprovas 
 
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_45-b15

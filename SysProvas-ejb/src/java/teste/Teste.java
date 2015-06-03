@@ -6,9 +6,11 @@
 package teste;
 
 import entidades.Questao;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import negocio.*;
 
 /**
@@ -17,17 +19,31 @@ import negocio.*;
  */
 public class Teste {
     
+    
     public void executar() {        
-        QuestaoFacade q1 = new QuestaoFacade();
+        QuestaoFacadeLocal q1 = lookupQuestaoFacadeLocal(); 
         
         for (Questao q : q1.findAll()) {
             System.out.println(q.getEnunciado());
-            System.out.println("88888888888888888888888888888888888888888888888888888888888888888888");
         }
     }
     
     public static void main(String args[]){
         Teste t = new Teste();
         t.executar();
+    }
+    
+    /**
+     * Método criado pelo professor, para testar funções com classe de teste.
+     * @return 
+     */    
+    private QuestaoFacadeLocal lookupQuestaoFacadeLocal() {
+        try {
+            Context c = new InitialContext();
+            return (QuestaoFacadeLocal) c.lookup("java:global/SysProvas/SysProvas-ejb/QuestaoFacade!negocio.QuestaoFacadeLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
     }
 }
