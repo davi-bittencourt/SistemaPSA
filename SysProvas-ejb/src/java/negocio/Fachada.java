@@ -24,6 +24,8 @@ public class Fachada implements FachadaLocal {
     private QuestaoFacadeLocal questaoEjb;
     @EJB
     private ProvaFacadeLocal provaEjb;
+    @EJB
+    private ProfessorFacadeLocal professorEjb;
 
     @Override
     public List<QuestaoDTO> getQuestoes() throws FachadaException {
@@ -109,5 +111,42 @@ public class Fachada implements FachadaLocal {
             dtoProvas.add(new ProvaDTO(id, cod, questoes, profName));
         }
         return dtoProvas;
+    }
+    
+    @Override
+    public List<ProfessorDTO> getProfessores() throws FachadaException {
+        try {
+            List<Professor> profs = professorEjb.findAll();
+            return copiarParaProfessorDTO(profs);
+        } catch (Exception e) {
+            throw new FachadaException("Erro ao buscar todos os professores", e);
+        }
+    }
+
+    private List<ProfessorDTO> copiarParaProfessorDTO(List<Professor> profs) {
+       List<ProfessorDTO> dtoProfessores = new ArrayList<ProfessorDTO>(profs.size());
+       for (Professor p : profs) {
+           dtoProfessores.add(new ProfessorDTO(p.getIdProf(), p.getNome()));
+       }
+       return dtoProfessores; 
+    }
+
+    @Override
+    public void cadastrarProva(String cod, Integer id_prof) {
+       
+        Prova prova = new Prova();
+        Professor prof = new Professor();
+        
+        prova.setCodigo(cod);
+        prof.setIdProf(id_prof);
+        
+        prova.setIdProf(prof);
+        try{
+            provaEjb.create(prova);
+   
+        } catch (Exception e) {
+            throw new FachadaException("Ocorreu um erro ao cadastrar a prova no banco de dados: ", e);
+        }
+        
     }
 }
