@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>  
+        <title>Painel do professor</title>
+        <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+            <div id="content">
+                <h2>Painel do professor</h2>
+
+                <p>Crie novas questões ou edite questões para serem adicionadas às provas</p><br />
+
+                <h:form id="form01">
+                    <p:commandButton value="Criar nova questão" type="button" onclick="PF('dlg1').show();" />
+                </h:form>
+
+                <h3>Questões cadastradas no sistema:</h3>
+                <h:form>
+                    <p:dataTable var="q" value="#{adminQuestoesBean.questoes}" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate ="5,10,15"
+                                 sortMode="multiple">
+                        <p:column width="40" headerText="Id" sortBy="#{q.id_questao}">
+                            <h:outputText value="#{q.id_questao}" />
+                        </p:column>
+
+                        <p:column width="250" headerText="Categoria(s)" sortBy="#{q.categoria}">
+                            <h:outputText value="#{q.categoria}" />
+                        </p:column>
+
+                        <p:column headerText="Enunciado">
+                            <h:outputText value="#{q.enunciado}" />
+                        </p:column>
+
+
+                        <p:column width="45" headerText="">
+
+                            <h:link outcome="painel.xhtml" value="editar">
+                                <f:param name="user" value="#{q.id_questao}"/>
+                            </h:link>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <p:dialog header="Cadestrar uma nova Quesão" widgetVar="dlg1" modal="true" height="600">
+                    <h:form id="form1">
+                        <p:messages autoUpdate="true" />                                    
+                        <h3>Enunciado</h3>
+                        <h:inputTextarea cols="64" rows="5" id="enunciado" value="#{cadastrarQuestaoBean.txt_enunciado}" label="Enunciado da questão" /><br />
+
+                        <h3>Alternativas</h3>
+                        <h:outputLabel for="alt_a" value="A) " />
+                        <h:inputText  size="60" id="alt_a" value="#{cadastrarQuestaoBean.txt_alternativa_a}" label="Alternativa A" /><br />
+                        <h:outputLabel for="alt_b" value="B) " />
+                        <h:inputText  size="60" id="alt_b" value="#{cadastrarQuestaoBean.txt_alternativa_b}" label="Alternativa B" /><br />
+                        <h:outputLabel for="alt_c" value="C) " />
+                        <h:inputText  size="60" id="alt_c" value="#{cadastrarQuestaoBean.txt_alternativa_c}" label="Alternativa C" /><br />
+                        <h:outputLabel for="alt_d" value="D) " />
+                        <h:inputText  size="60" id="alt_d" value="#{cadastrarQuestaoBean.txt_alternativa_d}" label="Alternativa D" /><br />
+                        <h:outputLabel for="alt_e" value="E) " />
+                        <h:inputText  size="60" id="alt_e" value="#{cadastrarQuestaoBean.txt_alternativa_e}" label="Alternativa E" /><br /><br />
+
+                        <p:outputLabel for="resp" value="Selecione a alternativa correta: " />
+                        <p:selectOneRadio  id="resp" value="#{cadastrarQuestaoBean.txt_alternativa_correta}">
+                            <f:selectItem itemLabel="A " itemValue="a" />
+                            <f:selectItem itemLabel="B " itemValue="b" />
+                            <f:selectItem itemLabel="C " itemValue="c" />
+                            <f:selectItem itemLabel="D " itemValue="d" />
+                            <f:selectItem itemLabel="E " itemValue="e" />
+                        </p:selectOneRadio>
+
+                        <table>
+                            <tr>
+                                <td> 
+                                    <h3>Categorias</h3>
+                                    <p:selectManyMenu id="categorias" value="#{cadastrarQuestaoBean.categoriasSelecionadas}" showCheckbox="true">
+                                        <f:selectItems value="#{cadastrarQuestaoBean.categorias}" var="c" itemLabel="#{c.nome}" itemValue="#{c.idCateg}"/>                                       
+                                    </p:selectManyMenu>
+                                </td>
+
+                                <td>  
+                                    <h3>Comentário do professor</h3>
+                                    &nbsp;&nbsp;<h:inputTextarea cols="41" rows="6" id="comentario" value="#{cadastrarQuestaoBean.txt_comentario}" label="Comentário sobre a questão" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <p:growl id="growl" life="2000" sticky="true" showDetail="true" />
+                        <p:commandButton value="Cadastrar" id="ajax" update="growl" actionListener="#{cadastrarQuestaoBean.buttonActionCadastrarQuestao}" oncomplete="handleLoginRequest(xhr, status, args)" />
+                    </h:form>
+                </p:dialog>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+                    PF('dlg1').jq.effect("shake", {times: 5}, 100);
+                }
+                else {
+                    PF('dlg1').hide();
+                    $('#loginLink').fadeOut();
+                }
+            }
+        </script>
+    </h:body>
+</html>

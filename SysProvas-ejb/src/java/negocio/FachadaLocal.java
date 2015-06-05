@@ -52,4 +52,20 @@ public interface FachadaLocal {
      * @param id_prof id do professor selecionado na interface web.
      */
     void cadastrarProva(String cod, Integer id_prof);
+    
+    /**
+     * Cadastra uma nova questão no no banco de dados.
+     * 
+     * @param txt_enunciado
+     * @param txt_comentario
+     * @param txt_alternativa_correta
+     * @param txt_alternativa_a
+     * @param txt_alternativa_b
+     * @param txt_alternativa_c
+     * @param txt_alternativa_d
+     * @param txt_alternativa_e
+     * @param idCategoriasSelecionadas Lista que contém os IDs das categorias pertencentes à questão.
+     */
+    public void cadastrarQuestao(String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas);
+
 }

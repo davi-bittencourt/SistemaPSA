@@ -17,10 +17,14 @@
                 <p>Bem vindo ao painel do professor!<br />
                     Aqui você poderá criar, editar ou cadastrar novas questões e provas para os usuários do sistema.</p>
                 <br />
-                <h3>Criar uma nova prova:</h3>
-                <h:form id="form01">
-                    <p:commandButton value="Cadastrar nova prova" type="button" onclick="PF('dlg1').show();" />
-                </h:form>
+                <h3>Gerenciar provas e questões:</h3>
+
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="10">
+                    <h:form id="form01">
+                        <p:commandButton value="Cadastrar nova prova" type="button" onclick="PF('dlg1').show();" />
+                    </h:form>
+                    <p:button id="lnkquestoes" value="Criar ou editar questões" outcome="adminQuestoes.xhtml" />
+                </h:panelGrid>
                 <br />
                 <h3>Editar provas existentes:</h3>          
                 <h:form id="form02">
@@ -47,31 +51,31 @@
                 </h:form>
 
                 <h3>Estatísticas:</h3>
-
-
+                
+                Implementar
+                <br />
                 <p:dialog header="Cadestrar uma nova prova" widgetVar="dlg1" modal="true" height="150">
                     <h:form id="form03">
-                    <p:messages autoUpdate="true" />
-                    <p:outputLabel for="selprof" value="Professor"/>
-                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="10">
-                        <p:selectOneMenu id="selprof" value="#{cadastrarProvaBean.idProfSelecionado}" style="width:125px">
-                            <f:selectItems value="#{cadastrarProvaBean.professores}" />
-                        </p:selectOneMenu>
-                    </h:panelGrid>
-                    
-                    <p:outputLabel for="selcod" value="Proteget prova com código de acesso?"/>
-                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="10">
-                        <p:selectOneMenu id="selcod" value="#{cadastrarProvaBean.codSelecionado}" style="width:125px">
-                            <f:selectItem itemLabel="Não" itemValue="nao" />
-                            <f:selectItem itemLabel="Sim" itemValue="sim" />
-                        </p:selectOneMenu>
-                    </h:panelGrid>
-                    
-                    <p:growl id="growl" life="2000" />
-                    <p:commandButton value="Cadastrar" id="ajax" update="growl" actionListener="#{cadastrarProvaBean.buttonActionCadastrarProva}" styleClass="ui-priority-primary" />
-                    
-                    </h:form>
+                        <p:messages autoUpdate="true" />
+                        <p:outputLabel for="selprof" value="Professor"/>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="10">
+                            <p:selectOneMenu id="selprof" value="#{cadastrarProvaBean.idProfSelecionado}" style="width:125px">
+                                <f:selectItems value="#{cadastrarProvaBean.professores}" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
 
+                        <p:outputLabel for="selcod" value="Proteget prova com código de acesso?"/>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="10">
+                            <p:selectOneMenu id="selcod" value="#{cadastrarProvaBean.codSelecionado}" style="width:125px">
+                                <f:selectItem itemLabel="Não" itemValue="nao" />
+                                <f:selectItem itemLabel="Sim" itemValue="sim" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+
+                        <p:growl id="growl" life="2000" />
+                        <p:commandButton value="Cadastrar" id="ajax" update="growl" actionListener="#{cadastrarProvaBean.buttonActionCadastrarProva}" styleClass="ui-priority-primary" />
+
+                    </h:form>
                 </p:dialog>
             </div>
         </div>     

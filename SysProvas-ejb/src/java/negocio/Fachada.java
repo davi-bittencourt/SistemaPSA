@@ -6,7 +6,9 @@
 package negocio;
 
 import entidades.*;
+import java.util.AbstractCollection;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.EJB;
@@ -149,4 +151,30 @@ public class Fachada implements FachadaLocal {
         }
         
     }
+
+    @Override
+    public void cadastrarQuestao(String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas) {
+        Questao q = new Questao();
+        
+        Collection<Categoria> cc = new ArrayList<>();
+        
+        for(String id : idCategoriasSelecionadas){  
+                cc.add(new Categoria(new Integer(id)));
+        }
+
+        q.setEnunciado(txt_enunciado);
+        q.setComentario(txt_comentario);
+        q.setAlternativaCorreta(txt_alternativa_correta);
+        q.setAlternativaA(txt_alternativa_a);
+        q.setAlternativaB(txt_alternativa_b);
+        q.setAlternativaC(txt_alternativa_c);
+        q.setAlternativaD(txt_alternativa_d);
+        q.setAlternativaE(txt_alternativa_e);
+        q.setCategoriaCollection(cc);
+
+        try{
+            questaoEjb.create(q);
+        } catch (Exception e) {
+            throw new FachadaException("Ocorreu um erro ao cadastrar a questão no banco de dados: ", e);
+        }}
 }
