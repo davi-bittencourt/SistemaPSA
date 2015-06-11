@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Editar uma questão</title>
+        <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+            <div id="content">
+                <h2>
+                    <h:outputFormat value="O ID da questão é, {0}.">
+                        <f:param value="#{editarQuestaoBean.id}" />
+                    </h:outputFormat>
+                </h2>
+                <h:form id="form1">
+                    <ui:param name="id" value="#{editarQuestaoBean.id}"/>
+                    <p:messages autoUpdate="true" />                                    
+                    <h3>Enunciado</h3>
+                    <h:inputTextarea cols="64" rows="5" id="enunciado" value="#{id}" label="Enunciado da questão" /><br />
+
+                    <h3>Alternativas</h3>
+                    <h:outputLabel for="alt_a" value="A) " />
+                    <h:inputText  size="60" id="alt_a" value="#{cadastrarQuestaoBean.txt_alternativa_a}" label="Alternativa A" /><br />
+                    <h:outputLabel for="alt_b" value="B) " />
+                    <h:inputText  size="60" id="alt_b" value="#{cadastrarQuestaoBean.txt_alternativa_b}" label="Alternativa B" /><br />
+                    <h:outputLabel for="alt_c" value="C) " />
+                    <h:inputText  size="60" id="alt_c" value="#{cadastrarQuestaoBean.txt_alternativa_c}" label="Alternativa C" /><br />
+                    <h:outputLabel for="alt_d" value="D) " />
+                    <h:inputText  size="60" id="alt_d" value="#{cadastrarQuestaoBean.txt_alternativa_d}" label="Alternativa D" /><br />
+                    <h:outputLabel for="alt_e" value="E) " />
+                    <h:inputText  size="60" id="alt_e" value="#{cadastrarQuestaoBean.txt_alternativa_e}" label="Alternativa E" /><br /><br />
+
+                    <p:outputLabel for="resp" value="Selecione a alternativa correta: " />
+                    <p:selectOneRadio  id="resp" value="#{cadastrarQuestaoBean.txt_alternativa_correta}">
+                        <f:selectItem itemLabel="A " itemValue="a" />
+                        <f:selectItem itemLabel="B " itemValue="b" />
+                        <f:selectItem itemLabel="C " itemValue="c" />
+                        <f:selectItem itemLabel="D " itemValue="d" />
+                        <f:selectItem itemLabel="E " itemValue="e" />
+                    </p:selectOneRadio>
+
+                    <table>
+                        <tr>
+                            <td> 
+                                <h3>Categorias</h3>
+                                <p:selectManyMenu id="categorias" value="#{cadastrarQuestaoBean.categoriasSelecionadas}" showCheckbox="true">
+                                    <f:selectItems value="#{cadastrarQuestaoBean.categorias}" var="c" itemLabel="#{c.nome}" itemValue="#{c.idCateg}"/>                                       
+                                </p:selectManyMenu>
+                            </td>
+
+                            <td>  
+                                <h3>Comentário do professor</h3>
+                                &nbsp;&nbsp;<h:inputTextarea cols="41" rows="6" id="comentario" value="#{cadastrarQuestaoBean.txt_comentario}" label="Comentário sobre a questão" />
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+
+                    <p:growl id="growl" life="2000" sticky="true" showDetail="true" />
+                    <p:commandButton value="Cadastrar" id="ajax" update="growl" actionListener="#{cadastrarQuestaoBean.buttonActionCadastrarQuestao}" oncomplete="handleLoginRequest(xhr, status, args)" />
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+

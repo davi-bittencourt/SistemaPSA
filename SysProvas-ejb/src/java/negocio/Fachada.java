@@ -177,4 +177,35 @@ public class Fachada implements FachadaLocal {
         } catch (Exception e) {
             throw new FachadaException("Ocorreu um erro ao cadastrar a questão no banco de dados: ", e);
         }}
+    
+    @Override
+    public QuestaoDTO getQuestao(int id) {
+        try {
+            Questao q = questaoEjb.find(id);
+            return copiarParaQuestaoDTO(q);
+        } catch (Exception e) {
+            throw new FachadaException("Erro ao buscar a questão de ID: "+id, e);
+        }
+    }
+
+    private QuestaoDTO copiarParaQuestaoDTO(Questao q) {
+
+        Integer id_questao = q.getIdQuestao();
+        String enunciado = q.getEnunciado();
+        String categoria = "";
+        for (Categoria c : q.getCategoriaCollection()) {
+            categoria += c.getNome() + "; ";
+        }
+        String comentario = q.getComentario();
+        String alternativa_correta = q.getAlternativaCorreta();
+        String alternativa_a = q.getAlternativaA();
+        String alternativa_b = q.getAlternativaB();
+        String alternativa_c = q.getAlternativaC();
+        String alternativa_d = q.getAlternativaD();
+        String alternativa_e = q.getAlternativaE();
+
+        QuestaoDTO dto = new QuestaoDTO(id_questao, enunciado, categoria, comentario, alternativa_correta, alternativa_a, alternativa_b, alternativa_c, alternativa_d, alternativa_e);
+
+        return dto;
+    }
 }

@@ -40,11 +40,10 @@
                         </p:column>
 
 
-                        <p:column width="45" headerText="">
-
-                            <h:link outcome="painel.xhtml" value="editar">
-                                <f:param name="user" value="#{q.id_questao}"/>
-                            </h:link>
+                         <p:column width="45" headerText="">
+                            <h:commandButton id="editButton" action="#{editarQuestaoBean.outcome}" value="editar">
+                                <f:param name="id" value="#{q.id_questao}"/>
+                            </h:commandButton>
                         </p:column>
                     </p:dataTable>
                 </h:form>

@@ -67,5 +67,11 @@ public interface FachadaLocal {
      * @param idCategoriasSelecionadas Lista que contém os IDs das categorias pertencentes à questão.
      */
     public void cadastrarQuestao(String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas);
-
+    
+    /**
+     * Retorna uma questão do banco de dados através de sua ID
+     * @param id
+     * @return QuestaoDTO
+     */ 
+    public QuestaoDTO getQuestao(int id);
 }
