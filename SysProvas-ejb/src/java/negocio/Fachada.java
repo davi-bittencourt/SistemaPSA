@@ -6,7 +6,6 @@
 package negocio;
 
 import entidades.*;
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -108,13 +107,13 @@ public class Fachada implements FachadaLocal {
             Integer id = p.getIdProva();
             String cod = p.getCodigo();
             String profName = p.getIdProf().getNome();
-            
+
             List<QuestaoDTO> questoes = copiarParaQuestoesDTO(new ArrayList(p.getQuestaoCollection()));
             dtoProvas.add(new ProvaDTO(id, cod, questoes, profName));
         }
         return dtoProvas;
     }
-    
+
     @Override
     public List<ProfessorDTO> getProfessores() throws FachadaException {
         try {
@@ -126,42 +125,71 @@ public class Fachada implements FachadaLocal {
     }
 
     private List<ProfessorDTO> copiarParaProfessorDTO(List<Professor> profs) {
-       List<ProfessorDTO> dtoProfessores = new ArrayList<ProfessorDTO>(profs.size());
-       for (Professor p : profs) {
-           dtoProfessores.add(new ProfessorDTO(p.getIdProf(), p.getNome()));
-       }
-       return dtoProfessores; 
+        List<ProfessorDTO> dtoProfessores = new ArrayList<ProfessorDTO>(profs.size());
+        for (Professor p : profs) {
+            dtoProfessores.add(new ProfessorDTO(p.getIdProf(), p.getNome()));
+        }
+        return dtoProfessores;
     }
 
     @Override
     public void cadastrarProva(String cod, Integer id_prof) {
-       
+
         Prova prova = new Prova();
         Professor prof = new Professor();
-        
+
         prova.setCodigo(cod);
         prof.setIdProf(id_prof);
-        
+
         prova.setIdProf(prof);
-        try{
+        try {
             provaEjb.create(prova);
-   
+
         } catch (Exception e) {
             throw new FachadaException("Ocorreu um erro ao cadastrar a prova no banco de dados: ", e);
         }
-        
+
     }
 
     @Override
     public void cadastrarQuestao(String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas) {
-        Questao q = new Questao();
-        
-        Collection<Categoria> cc = new ArrayList<>();
-        
-        for(String id : idCategoriasSelecionadas){  
-                cc.add(new Categoria(new Integer(id)));
+        Questao q = copiarParaQuestao(null, txt_enunciado, txt_comentario, txt_alternativa_correta, txt_alternativa_a, txt_alternativa_b, txt_alternativa_c, txt_alternativa_d, txt_alternativa_e, idCategoriasSelecionadas);
+        try {
+            questaoEjb.create(q);
+        } catch (Exception e) {
+            throw new FachadaException("Ocorreu um erro ao cadastrar a questão no banco de dados: ", e);
         }
+    }
+    
+    @Override
+    public void editarQuestao(Integer id, String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas) {
+        Questao q = copiarParaQuestao(id, txt_enunciado, txt_comentario, txt_alternativa_correta, txt_alternativa_a, txt_alternativa_b, txt_alternativa_c, txt_alternativa_d, txt_alternativa_e, idCategoriasSelecionadas);
+        try {
+            questaoEjb.edit(q);
+        } catch (Exception e) {
+            throw new FachadaException("Ocorreu um erro ao cadastrar a questão no banco de dados: ", e);
+        }
+    }
 
+    @Override
+    public QuestaoDTO getQuestao(int id) {
+        try {
+            Questao q = questaoEjb.find(id);
+            return copiarParaQuestaoDTO(q);
+        } catch (Exception e) {
+            throw new FachadaException("Erro ao buscar a questão de ID: " + id, e);
+        }
+    }
+
+    private Questao copiarParaQuestao(Integer id, String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas) {
+        Questao q = new Questao();
+
+        Collection<Categoria> cc = new ArrayList<>();
+
+        for (String idCat : idCategoriasSelecionadas) {
+            cc.add(new Categoria(new Integer(idCat)));
+        }
+        q.setIdQuestao(id);
         q.setEnunciado(txt_enunciado);
         q.setComentario(txt_comentario);
         q.setAlternativaCorreta(txt_alternativa_correta);
@@ -172,20 +200,7 @@ public class Fachada implements FachadaLocal {
         q.setAlternativaE(txt_alternativa_e);
         q.setCategoriaCollection(cc);
 
-        try{
-            questaoEjb.create(q);
-        } catch (Exception e) {
-            throw new FachadaException("Ocorreu um erro ao cadastrar a questão no banco de dados: ", e);
-        }}
-    
-    @Override
-    public QuestaoDTO getQuestao(int id) {
-        try {
-            Questao q = questaoEjb.find(id);
-            return copiarParaQuestaoDTO(q);
-        } catch (Exception e) {
-            throw new FachadaException("Erro ao buscar a questão de ID: "+id, e);
-        }
+        return q;
     }
 
     private QuestaoDTO copiarParaQuestaoDTO(Questao q) {
@@ -207,5 +222,5 @@ public class Fachada implements FachadaLocal {
         QuestaoDTO dto = new QuestaoDTO(id_questao, enunciado, categoria, comentario, alternativa_correta, alternativa_a, alternativa_b, alternativa_c, alternativa_d, alternativa_e);
 
         return dto;
-    }
+    } 
 }

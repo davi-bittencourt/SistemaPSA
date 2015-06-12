@@ -33,6 +33,9 @@ public class QuestaoDTO implements Serializable {
         this.alternativa_e = alternativa_e;
     }
 
+    public QuestaoDTO() {
+    }
+
     public Integer getId_questao() {
         return id_questao;
     }

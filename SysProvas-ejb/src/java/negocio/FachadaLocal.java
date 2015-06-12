@@ -69,9 +69,25 @@ public interface FachadaLocal {
     public void cadastrarQuestao(String txt_enunciado, String txt_comentario, String txt_alternativa_correta, String txt_alternativa_a, String txt_alternativa_b, String txt_alternativa_c, String txt_alternativa_d, String txt_alternativa_e, List<String> idCategoriasSelecionadas);
     
     /**
+     * Edita uma questão já existente
+     * @param id
+     * @param enunciado
+     * @param comentario
+     * @param alternativa_correta
+     * @param alternativa_a
+     * @param alternativa_b
+     * @param alternativa_c
+     * @param alternativa_d
+     * @param alternativa_e
+     * @param idCategoriasSelecionadas 
+     */
+    public void editarQuestao(Integer id, String enunciado, String comentario, String alternativa_correta, String alternativa_a, String alternativa_b, String alternativa_c, String alternativa_d, String alternativa_e, List<String> idCategoriasSelecionadas);
+
+    /**
      * Retorna uma questão do banco de dados através de sua ID
      * @param id
      * @return QuestaoDTO
      */ 
     public QuestaoDTO getQuestao(int id);
-}
+
+    }
