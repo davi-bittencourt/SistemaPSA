@@ -37,7 +37,7 @@ public class EditarQuestaoBean {
     private List<String> idCategoriasSelecionadas;
   
     public Integer getId_questao() {
-        return id_questao;
+        return this.id_questao;
     }
 
     public void setId_questao(Integer id_questao) {
@@ -117,12 +117,10 @@ public class EditarQuestaoBean {
     }
 
     public String outcome() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        this.id_questao = new Integer(getIdParam(fc));
+        FacesContext fc = FacesContext.getCurrentInstance();    
+        this.id_questao = Integer.valueOf(getIdParam(fc));
         QuestaoDTO q = fachadaEjb.getQuestao(id_questao);
 
-        //Preenche os atributos do bean para posteriormente atualizar o arquivo
-        id_questao = q.getId_questao();
         txt_enunciado = q.getEnunciado();
         txt_comentario = q.getComentario();
         txt_alternativa_correta = q.getAlternativa_correta();
