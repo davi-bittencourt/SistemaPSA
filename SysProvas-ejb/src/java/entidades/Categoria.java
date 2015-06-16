@@ -47,12 +47,7 @@ public class Categoria implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "NOME")
     private String nome;
-    @JoinTable(name = "CATEGORIAS_QUESTOES", joinColumns = {
-        @JoinColumn(name = "ID_CATEG", referencedColumnName = "ID_CATEG")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "ID_QUESTAO")})
-    @ManyToMany
-    private Collection<Questao> questaoCollection;
-
+    
     public Categoria() {
     }
 
@@ -81,14 +76,14 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
-    @XmlTransient
-    public Collection<Questao> getQuestaoCollection() {
-        return questaoCollection;
-    }
-
-    public void setQuestaoCollection(Collection<Questao> questaoCollection) {
-        this.questaoCollection = questaoCollection;
-    }
+//    @XmlTransient
+//    public Collection<Questao> getQuestaoCollection() {
+//        return questaoCollection;
+//    }
+//
+//    public void setQuestaoCollection(Collection<Questao> questaoCollection) {
+//        this.questaoCollection = questaoCollection;
+//    }
 
     @Override
     public int hashCode() {
