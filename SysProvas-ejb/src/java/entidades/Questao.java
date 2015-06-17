@@ -87,7 +87,10 @@ public class Questao implements Serializable {
     @Size(min = 1, max = 300)
     @Column(name = "ALTERNATIVA_E")
     private String alternativaE;
-    @ManyToMany(mappedBy = "questaoCollection")
+   @JoinTable(name = "CATEGORIAS_QUESTOES", joinColumns = {
+        @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "ID_QUESTAO")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_CATEG", referencedColumnName = "ID_CATEG")})
+    @ManyToMany
     private Collection<Categoria> categoriaCollection;
     @JoinTable(name = "QUESTOES_PROVAS", joinColumns = {
         @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "ID_QUESTAO")}, inverseJoinColumns = {
