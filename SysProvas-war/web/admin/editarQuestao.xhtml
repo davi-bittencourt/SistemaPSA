@@ -19,7 +19,8 @@
                  
                     <p:messages autoUpdate="true" />
                     <h2>Editar um item de avaliação</h2>
-                    <h:outputLabel for="id_questao" value="ID: " /><h:inputText  disabled="true" size="2" id="id_questao" value="#{editarQuestaoBean.id_questao}" label="ID da questão" /><br />
+
+                    <p:inputText type="hidden" size="2" id="id_questao" value="#{editarQuestaoBean.id_questao}" label="ID da questão" /><br />
                     
                     <h3>Enunciado</h3>
                     <h:inputTextarea cols="64" rows="5" id="enunciado" value="#{editarQuestaoBean.txt_enunciado}" label="Enunciado da questão" /><br />
