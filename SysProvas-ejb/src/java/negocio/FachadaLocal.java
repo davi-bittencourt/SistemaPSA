@@ -82,6 +82,8 @@ public interface FachadaLocal {
      * @param idCategoriasSelecionadas 
      */
     public void editarQuestao(Integer id, String enunciado, String comentario, String alternativa_correta, String alternativa_a, String alternativa_b, String alternativa_c, String alternativa_d, String alternativa_e, List<String> idCategoriasSelecionadas);
+    
+    public void editarProva(Integer id, List<String> idCategoriasSelecionadas);
 
     /**
      * Retorna uma questão do banco de dados através de sua ID

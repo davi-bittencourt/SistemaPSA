@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Editar uma questão</title>
+        <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+        <style>
+.ui-button-text{
+   font-size:14px;
+}
+.smallButton .ui-button-text {
+   font-size:11px;
+}
+</style>
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+            <div id="content">
+                <h:form id="form1">
+                     <ui:param name="id" value="#{editarProvaBean.id_prova}"/>
+                 
+                    <p:messages autoUpdate="true" />
+                    <h2>Editar questoes presentes em um avaliação</h2>
+
+                    <p:inputText type="hidden" size="2" id="id_prova" value="#{editarProvaBean.id_prova}" label="ID da questão" /><br />
+                    
+                    <table>
+                        <tr>
+                            <td> 
+                                <h3>Questoes</h3>
+                                <p:selectManyMenu id="categorias" value="#{editarProvaBean.idQuestoesSelecionadas}" showCheckbox="true" styleClass="caixaSelecao">
+                                    <f:selectItems value="#{editarProvaBean.questoes}" var="q" itemLabel="#{q.enunciado}" itemValue="#{q.id_questao}"/>                                       
+                                </p:selectManyMenu>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <p:growl id="growl" life="2000" sticky="true" showDetail="true" />
+                    <p:commandButton value="Salvar" id="ajax" update="growl" actionListener="#{editarProvaBean.buttonActionEditarProva}" oncomplete="handleLoginRequest(xhr, status, args)" />
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>

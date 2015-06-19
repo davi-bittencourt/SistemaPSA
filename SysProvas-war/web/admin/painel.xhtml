@@ -35,7 +35,7 @@
                         </f:facet>
                         <p:ajax event="rowSelect" listener="#{painelBean.onRowSelect}" update=":form02:msgs" />
                         <p:ajax event="rowUnselect" listener="#{painelBean.onRowUnselect}" update=":form02:msgs" />
-                        <p:column headerText="Id">
+                        <p:column headerText="Id" width="5%">
                             <h:outputText value="#{prova.idProva}" />
                         </p:column>
                         <p:column headerText="Código de acesso">
@@ -46,6 +46,11 @@
                         </p:column>
                         <p:column headerText="Nome do professor">
                             <h:outputText value="#{prova.idProf}" />
+                        </p:column>
+                        <p:column headerText="" width="60">
+                            <h:commandButton id="editButton" action="#{editarProvaBean.outcome}" value="Atribuir Questões">
+                                <f:param name="id" value="#{prova.idProva}"/>
+                            </h:commandButton>
                         </p:column>
                     </p:dataTable>
                 </h:form>

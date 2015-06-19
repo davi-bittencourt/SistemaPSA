@@ -223,4 +223,28 @@ public class Fachada implements FachadaLocal {
 
         return dto;
     } 
+
+    @Override
+    public void editarProva(Integer id, List<String> idQuestoesSelecionadas) {        
+        Prova p = copiarParaProva(id,idQuestoesSelecionadas);
+        try {
+            provaEjb.edit(p);
+        } catch (Exception e) {
+            throw new FachadaException("Ocorreu um erro ao cadastrar a prova no banco de dados: ", e);
+        }
+    }   
+
+    private Prova copiarParaProva(Integer id, List<String> idQuestoesSelecionadas) {
+        Prova p = new Prova();
+
+        Collection<Questao> cc = new ArrayList<>();
+
+        for (String idQ : idQuestoesSelecionadas) {
+            cc.add(new Questao(new Integer(idQ)));
+        }
+        p.setIdProva(id);                
+        p.setQuestaoCollection(cc);
+
+        return p;
+    }
 }
