@@ -105,8 +105,8 @@ public class Fachada implements FachadaLocal {
         List<ProvaDTO> dtoProvas = new ArrayList<ProvaDTO>(provas.size());
         for (Prova p : provas) {
             Integer id = p.getIdProva();
-            String cod = p.getCodigo();
-            String profName = p.getIdProf().getNome();
+            String cod = p.getCodigo();            
+            String profName = (p.getIdProf() == null)? null : p.getIdProf().getNome();
 
             List<QuestaoDTO> questoes = copiarParaQuestoesDTO(new ArrayList(p.getQuestaoCollection()));
             dtoProvas.add(new ProvaDTO(id, cod, questoes, profName));
